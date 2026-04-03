@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://starwars.hezivio.com'),
   title: 'Holocron Archives - Star Wars Lore Database',
   description: 'Explore the comprehensive Star Wars universe through detailed articles on characters, battles, ships, planets, and lore.',
   icons: {
