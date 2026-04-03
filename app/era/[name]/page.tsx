@@ -1,4 +1,5 @@
 import Image from 'next/image';
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { sql } from '@/lib/db';

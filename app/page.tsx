@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { sql } from '@/lib/db';
 import type { Post } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 async function getLatestPosts(): Promise<Post[]> {
   const posts = await sql<Post[]>`
     SELECT * FROM posts 
