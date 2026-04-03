@@ -26,11 +26,11 @@ async function generateImage(prompt: string, slug: string): Promise<string> {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'dall-e-3',
+        model: 'gpt-image-1.5',
         prompt: fullPrompt,
         n: 1,
-        size: '1792x1024',
-        quality: 'hd',
+        size: '1536x1024',
+        quality: 'high',
       }),
     });
 
@@ -40,12 +40,11 @@ async function generateImage(prompt: string, slug: string): Promise<string> {
     }
 
     const data = await response.json();
-    const imageUrl = data.data[0].url;
+    const b64Data = data.data[0].b64_json;
 
-    // Download image
-    console.log(`  ↓ Downloading image...`);
-    const imageResponse = await fetch(imageUrl);
-    const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
+    // Decode base64 image
+    console.log(`  ↓ Decoding image...`);
+    const imageBuffer = Buffer.from(b64Data, 'base64');
 
     // Convert to WebP and optimize
     console.log(`  ⚙ Converting to WebP...`);
