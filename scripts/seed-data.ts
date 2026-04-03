@@ -446,7 +446,7 @@ Malachor stał się martwym światem, jego powierzchnia zraniona dystorsją graw
   {
     slug: "star-forge",
     title_en: "The Star Forge: Infinite Fleet Factory",
-    title_pl": "Gwiezdna Kuźnia: Nieskończona Fabryka Flot",
+    title_pl: "Gwiezdna Kuźnia: Nieskończona Fabryka Flot",
     excerpt_en: "An ancient Rakatan space station powered by the dark side, capable of producing infinite warships to conquer the galaxy.",
     excerpt_pl: "Starożytna stacja kosmiczna Rakatanów zasilana ciemną stroną, zdolna produkować nieskończone okręty wojenne, by podbić galaktykę.",
     content_en: `The Star Forge is one of the most powerful artifacts in Star Wars history—a massive space station built by the Rakatan Infinite Empire over 20,000 years before the Galactic Civil War. Using the dark side of the Force as a power source, the Star Forge could manufacture battle droids, starfighters, and capital ships at an impossible rate, limited only by available raw materials.
