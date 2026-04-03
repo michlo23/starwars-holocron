@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { sql } from '@/lib/db';
 import type { Post } from '@/lib/db';
+import { getLang, t } from '@/lib/lang';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,7 +25,9 @@ async function getFeaturedPosts(): Promise<Post[]> {
   return posts;
 }
 
-export default async function HomePage() {
+export default async function HomePage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const sp = await searchParams;
+  const lang = getLang(sp);
   const [featuredPosts, latestPosts] = await Promise.all([
     getFeaturedPosts(),
     getLatestPosts(),
@@ -35,7 +38,7 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-[#111114]">
       {/* Hero Banner — uses branding banner as default, featured post overlay on top */}
-      <div className="relative h-[60vh] min-h-[500px] overflow-hidden">
+      <div className="relative h-[50vh] min-h-[350px] md:h-[60vh] md:min-h-[500px] overflow-hidden">
         {/* Background: branded hero banner */}
         <Image
           src="/images/branding/hero-banner.webp"
@@ -47,7 +50,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#111114] via-[#111114]/60 to-[#111114]/20" />
 
         {/* Content overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-16">
           <div className="max-w-7xl mx-auto">
             {heroPost ? (
               <>
@@ -55,10 +58,10 @@ export default async function HomePage() {
                   Featured
                 </div>
                 <h1 className="text-4xl md:text-6xl font-semibold text-[#fafafa] mb-4 tracking-tight">
-                  {heroPost.title_en}
+                  {t(heroPost, "title", lang)}
                 </h1>
                 <p className="text-lg md:text-xl text-[#d4d4d8] mb-6 max-w-3xl">
-                  {heroPost.excerpt_en}
+                  {t(heroPost, "excerpt", lang)}
                 </p>
                 <Link
                   href={`/posts/${heroPost.slug}`}
@@ -125,7 +128,7 @@ export default async function HomePage() {
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={post.image_url}
-                    alt={post.title_en}
+                    alt={t(post, "title", lang)}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -137,10 +140,10 @@ export default async function HomePage() {
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-semibold text-[#fafafa] mb-2 group-hover:text-amber-400 transition-colors">
-                    {post.title_en}
+                    {t(post, "title", lang)}
                   </h3>
                   <p className="text-sm text-[#a1a1aa] line-clamp-2">
-                    {post.excerpt_en}
+                    {t(post, "excerpt", lang)}
                   </p>
                   <div className="mt-4 flex items-center justify-between text-xs text-[#71717a]">
                     <span className="capitalize">{post.era.replace(/_/g, ' ')}</span>

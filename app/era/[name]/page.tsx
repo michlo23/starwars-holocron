@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { sql } from '@/lib/db';
 import type { Post, Era } from '@/lib/db';
+import { getLang, t } from '@/lib/lang';
 
 const VALID_ERAS: Era[] = ['old_republic', 'prequel', 'clone_wars', 'imperial', 'rebellion', 'new_republic', 'first_order', 'legends'];
 
@@ -16,8 +17,9 @@ async function getPostsByEra(era: Era): Promise<Post[]> {
   return posts;
 }
 
-export default async function EraPage({ params }: { params: Promise<{ name: string }> }) {
-  const { name } = await params;
+export default async function EraPage({ params, searchParams }: { params: Promise<{ name: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const [{ name }, sp] = await Promise.all([params, searchParams]);
+  const lang = getLang(sp);
   const era = name as Era;
   
   if (!VALID_ERAS.includes(era)) {
@@ -54,17 +56,17 @@ export default async function EraPage({ params }: { params: Promise<{ name: stri
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={post.image_url}
-                    alt={post.title_en}
+                    alt={t(post, "title", lang)}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-semibold text-[#fafafa] mb-2 group-hover:text-amber-400 transition-colors">
-                    {post.title_en}
+                    {t(post, "title", lang)}
                   </h3>
                   <p className="text-sm text-[#a1a1aa] line-clamp-2">
-                    {post.excerpt_en}
+                    {t(post, "excerpt", lang)}
                   </p>
                   <div className="mt-4 flex items-center justify-between text-xs text-[#71717a]">
                     <span className="capitalize">{post.category}</span>

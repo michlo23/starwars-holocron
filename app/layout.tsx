@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Suspense } from 'react';
+import LanguageSwitcher from './components/LanguageSwitcher';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -69,19 +71,22 @@ export default function RootLayout({
                 </span>
               </Link>
 
-              <div className="flex items-center space-x-6">
-                <Link href="/" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-                  Archives
-                </Link>
-                <Link href="/category/character" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-                  Characters
-                </Link>
-                <Link href="/category/battle" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-                  Battles
-                </Link>
-                <Link href="/about" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-                  About
-                </Link>
+              <div className="flex items-center gap-4">
+                <div className="hidden sm:flex items-center space-x-6">
+                  <Link href="/" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
+                    Archives
+                  </Link>
+                  <Link href="/category/character" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
+                    Characters
+                  </Link>
+                  <Link href="/category/battle" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
+                    Battles
+                  </Link>
+                  <Link href="/about" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
+                    About
+                  </Link>
+                </div>
+                <Suspense><LanguageSwitcher /></Suspense>
               </div>
             </div>
           </div>

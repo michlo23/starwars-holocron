@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { sql } from '@/lib/db';
 import type { Post } from '@/lib/db';
+import { getLang, t } from '@/lib/lang';
 
 async function getPost(slug: string): Promise<Post | null> {
   const posts = await sql<Post[]>`
@@ -38,8 +39,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function PostPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  const [{ slug }, sp] = await Promise.all([params, searchParams]);
+  const lang = getLang(sp);
   const post = await getPost(slug);
   
   if (!post) {
@@ -51,10 +53,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="min-h-screen bg-[#111114]">
       {/* Hero Image */}
-      <div className="relative h-[50vh] min-h-[400px] overflow-hidden">
+      <div className="relative h-[40vh] min-h-[250px] md:h-[50vh] md:min-h-[400px] overflow-hidden">
         <Image
           src={post.image_url}
-          alt={post.title_en}
+          alt={t(post, "title", lang)}
           fill
           className="object-cover"
           priority
@@ -80,12 +82,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
           {/* Title */}
           <h1 className="text-4xl md:text-5xl font-semibold text-[#fafafa] mb-4 tracking-tight leading-tight">
-            {post.title_en}
+            {t(post, "title", lang)}
           </h1>
 
           {/* Excerpt */}
           <p className="text-lg text-[#d4d4d8] mb-8 leading-relaxed">
-            {post.excerpt_en}
+            {t(post, "excerpt", lang)}
           </p>
 
           {/* Divider */}
@@ -93,7 +95,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
           {/* Content */}
           <div className="prose prose-invert prose-lg max-w-none">
-            {post.content_en.split('\n\n').map((paragraph, index) => (
+            {t(post, "content", lang).split('\n\n').map((paragraph, index) => (
               <p key={index} className="text-[#d4d4d8] mb-6 leading-relaxed">
                 {paragraph}
               </p>
@@ -118,17 +120,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={related.image_url}
-                    alt={related.title_en}
+                    alt={t(related, "title", lang)}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-semibold text-[#fafafa] mb-2 group-hover:text-amber-400 transition-colors">
-                    {related.title_en}
+                    {t(related, "title", lang)}
                   </h3>
                   <p className="text-sm text-[#a1a1aa] line-clamp-2">
-                    {related.excerpt_en}
+                    {t(related, "excerpt", lang)}
                   </p>
                 </div>
               </Link>
