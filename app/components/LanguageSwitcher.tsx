@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export default function LanguageSwitcher() {
   const router = useRouter();
@@ -9,7 +9,22 @@ export default function LanguageSwitcher() {
   const searchParams = useSearchParams();
   const currentLang = searchParams.get('lang') || 'en';
 
+  // On mount: if no ?lang in URL, check localStorage and redirect
+  useEffect(() => {
+    if (!searchParams.has('lang')) {
+      const stored = localStorage.getItem('holocron-lang');
+      if (stored === 'pl') {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('lang', 'pl');
+        router.replace(`${pathname}?${params.toString()}`);
+      }
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const switchLang = useCallback((lang: string) => {
+    // Save to localStorage
+    localStorage.setItem('holocron-lang', lang);
+
     const params = new URLSearchParams(searchParams.toString());
     if (lang === 'en') {
       params.delete('lang');
