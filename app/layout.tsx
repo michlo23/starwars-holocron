@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Explore the comprehensive Star Wars universe through detailed articles on characters, battles, ships, planets, and lore.',
   icons: {
     icon: '/favicon.ico',
-    apple: '/images/branding/icon-192.webp',
+    apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
   openGraph: {
