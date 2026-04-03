@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "darth-revan",
+    "title_en": "Darth Revan: The Prodigal Knight",
+    "title_pl": "Darth Revan: Powracający Rycerz",
+    "excerpt_en": "The legendary Jedi who became Sith Lord, then returned to the light—Revan's journey transcends the binary of good and evil.",
+    "excerpt_pl": "Legendarny Jedi, który stał się Lordem Sithów, by potem powrócić do światła—podróż Revana wykracza poza dychotomię dobra i zła.",
+    "content_en": "Revan stands as one of the most complex figures in Star Wars lore. Once a celebrated Jedi Knight who led the Republic to victory in the Mandalorian Wars, Revan fell to the dark side and became a Sith Lord, waging war against the very Republic he once defended.\n\nWhat makes Revan's story extraordinary is not just the fall, but the redemption. After being captured and having his memory wiped by the Jedi Council, Revan slowly rediscovered his identity while fighting against his own Sith Empire. This duality—Jedi and Sith, savior and destroyer—defines his legacy.\n\nRevan's iconic mask, taken from a fallen Mandalorian warrior, became a symbol of both terror and hope. His tactical genius was unmatched; he understood that to defeat the Mandalorians, one had to think like them. Later, as a Sith Lord, he employed the same ruthless pragmatism.\n\nThe Star Forge, the ancient Rakatan space station Revan discovered, gave him nearly unlimited power to build a fleet. Yet unlike other Sith who sought only domination, Revan had a vision—preparing the galaxy for a greater threat he sensed in the Unknown Regions.",
+    "content_pl": "Revan to jedna z najbardziej złożonych postaci w Star Wars. Niegdyś celebrowany Rycerz Jedi, który poprowadził Republikę do zwycięstwa w wojnach mandloriańskich, upadł na ciemną stronę i został Lordem Sithów, prowadząc wojnę przeciwko tej samej Republice, którą kiedyś bronił.\n\nTo, co czyni historię Revana wyjątkową, to nie tylko upadek, ale odkupienie. Po schwytaniu i wymazaniu pamięci przez Radę Jedi, Revan powoli odzyskiwał swoją tożsamość, walcząc z własnym Imperium Sithów. Ta dwoistość—Jedi i Sith, zbawiciel i niszczyciel—definiuje jego spuściznę.\n\nIkoniczna maska Revana, zdjęta z poległego wojownika mandloriańskiego, stała się symbolem zarówno terroru, jak i nadziei. Jego geniusz taktyczny był niezrównany; rozumiał, że aby pokonać Mandalorian, trzeba myśleć jak oni. Później, jako Lord Sithów, stosował ten sam bezlitosny pragmatyzm.\n\nGwiezdna Kuźnia, starożytna stacja kosmiczna Rakatanów odkryta przez Revana, dała mu niemal nieograniczoną moc budowy floty. Jednak w przeciwieństwie do innych Sithów pragnących tylko dominacji, Revan miał wizję—przygotowywał galaktykę na większe zagrożenie, które wyczuwał w Nieznanych Regionach.",
+    "category": "character",
+    "era": "old_republic",
+    "canon_status": "legends",
+    "featured": true,
+    "image_prompt": "Ancient Jedi warrior in iconic red and black mask standing on Star Forge bridge, purple and crimson lightsabers ignited, Rakatan technology glowing behind him, star destroyer fleet in deep space beyond, epic hero pose"
+  }
+]
