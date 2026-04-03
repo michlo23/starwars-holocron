@@ -16,8 +16,9 @@ async function getPostsByEra(era: Era): Promise<Post[]> {
   return posts;
 }
 
-export default async function EraPage({ params }: { params: { name: string } }) {
-  const era = params.name as Era;
+export default async function EraPage({ params }: { params: Promise<{ name: string }> }) {
+  const { name } = await params;
+  const era = name as Era;
   
   if (!VALID_ERAS.includes(era)) {
     notFound();

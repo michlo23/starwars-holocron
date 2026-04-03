@@ -16,8 +16,9 @@ async function getPostsByCategory(category: Category): Promise<Post[]> {
   return posts;
 }
 
-export default async function CategoryPage({ params }: { params: { name: string } }) {
-  const category = params.name as Category;
+export default async function CategoryPage({ params }: { params: Promise<{ name: string }> }) {
+  const { name } = await params;
+  const category = name as Category;
   
   if (!VALID_CATEGORIES.includes(category)) {
     notFound();
