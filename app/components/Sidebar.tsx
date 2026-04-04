@@ -40,16 +40,16 @@ export default function Sidebar() {
       {/* Mobile menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-2.5 left-14 z-[60] lg:hidden rounded-lg overflow-hidden active:scale-95 transition-transform"
+        className="fixed top-2.5 left-14 z-[60] lg:hidden rounded-full overflow-hidden active:scale-95 transition-transform ring-2 ring-[#111114]"
         aria-label="Menu"
-        style={{ touchAction: 'manipulation', minWidth: '44px', minHeight: '44px' }}
+        style={{ touchAction: 'manipulation', minWidth: '48px', minHeight: '48px' }}
       >
         <Image
           src={isOpen ? '/images/icons/menu-close.webp' : '/images/icons/menu-hamburger.webp'}
           alt="Menu"
-          width={44}
-          height={44}
-          className="object-cover rounded-lg"
+          width={48}
+          height={48}
+          className="object-cover"
         />
       </button>
 
