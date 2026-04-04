@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 
@@ -9,7 +10,6 @@ export default function LanguageSwitcher() {
   const searchParams = useSearchParams();
   const currentLang = searchParams.get('lang') || 'en';
 
-  // On mount: if no ?lang in URL, check localStorage and redirect
   useEffect(() => {
     if (!searchParams.has('lang')) {
       const stored = localStorage.getItem('holocron-lang');
@@ -22,9 +22,7 @@ export default function LanguageSwitcher() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const switchLang = useCallback((lang: string) => {
-    // Save to localStorage
     localStorage.setItem('holocron-lang', lang);
-
     const params = new URLSearchParams(searchParams.toString());
     if (lang === 'en') {
       params.delete('lang');
@@ -36,26 +34,42 @@ export default function LanguageSwitcher() {
   }, [router, pathname, searchParams]);
 
   return (
-    <div className="flex items-center gap-1 bg-[#1c1c21] border border-[#2e2e35] rounded-lg p-0.5">
+    <div className="flex items-center gap-1">
       <button
         onClick={() => switchLang('en')}
-        className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+        className={`rounded-full overflow-hidden transition-all active:scale-90 ${
           currentLang === 'en'
-            ? 'bg-amber-500 text-[#09090b]'
-            : 'text-[#a1a1aa] hover:text-[#fafafa]'
+            ? 'ring-2 ring-amber-500 scale-105'
+            : 'opacity-50 hover:opacity-80'
         }`}
+        aria-label="English"
+        style={{ touchAction: 'manipulation' }}
       >
-        EN
+        <Image
+          src="/images/icons/lang-en.webp"
+          alt="EN"
+          width={32}
+          height={32}
+          className="rounded-full"
+        />
       </button>
       <button
         onClick={() => switchLang('pl')}
-        className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+        className={`rounded-full overflow-hidden transition-all active:scale-90 ${
           currentLang === 'pl'
-            ? 'bg-amber-500 text-[#09090b]'
-            : 'text-[#a1a1aa] hover:text-[#fafafa]'
+            ? 'ring-2 ring-amber-500 scale-105'
+            : 'opacity-50 hover:opacity-80'
         }`}
+        aria-label="Polski"
+        style={{ touchAction: 'manipulation' }}
       >
-        PL
+        <Image
+          src="/images/icons/lang-pl.webp"
+          alt="PL"
+          width={32}
+          height={32}
+          className="rounded-full"
+        />
       </button>
     </div>
   );
