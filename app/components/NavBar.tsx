@@ -10,12 +10,7 @@ function NavContent() {
   const searchParams = useSearchParams();
   const lang = searchParams.get('lang') === 'pl' ? 'pl' : 'en';
 
-  const labels = {
-    archives: lang === 'pl' ? 'Archiwum' : 'Archives',
-    characters: lang === 'pl' ? 'Postacie' : 'Characters',
-    battles: lang === 'pl' ? 'Bitwy' : 'Battles',
-    about: lang === 'pl' ? 'O stronie' : 'About',
-  };
+  const aboutLabel = lang === 'pl' ? 'O stronie' : 'About';
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -36,17 +31,8 @@ function NavContent() {
 
         <div className="flex items-center gap-4">
           <div className="hidden sm:flex items-center space-x-6">
-            <LangLink href="/" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-              {labels.archives}
-            </LangLink>
-            <LangLink href="/category/character" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-              {labels.characters}
-            </LangLink>
-            <LangLink href="/category/battle" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-              {labels.battles}
-            </LangLink>
             <LangLink href="/about" className="text-sm font-medium text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-              {labels.about}
+              {aboutLabel}
             </LangLink>
           </div>
           <LanguageSwitcher />

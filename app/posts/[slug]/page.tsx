@@ -45,27 +45,27 @@ export default async function PostPage({ params, searchParams }: { params: Promi
       </div>
 
       <article className="max-w-4xl mx-auto px-4 md:px-8 -mt-32 relative z-10">
-        <div className="bg-[#1c1c21] border border-[#2e2e35] rounded-lg p-6 sm:p-8 md:p-12">
+        <div className="bg-[#1c1c21] border border-[#2e2e35] rounded-lg p-6 sm:p-8 md:p-12 overflow-hidden">
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            <span className="px-3 py-1 text-xs font-medium uppercase tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full">
+            <span className="px-3 py-1.5 text-xs font-medium uppercase tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full badge-glow">
               {tCategory(post.category, lang)}
             </span>
-            <span className="px-3 py-1 text-xs font-medium bg-[#2a2a30] text-[#a1a1aa] border border-[#2e2e35] rounded-full">
+            <span className="px-3 py-1.5 text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full">
               {tEra(post.era, lang)}
             </span>
-            <span className="px-3 py-1 text-xs font-medium bg-[#2a2a30] text-[#a1a1aa] border border-[#2e2e35] rounded-full">
+            <span className="px-3 py-1.5 text-xs font-medium bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-full">
               {tCanon(post.canon_status, lang)}
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#fafafa] mb-4 tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#fafafa] mb-4 tracking-tight leading-tight break-words">
             {t(post, 'title', lang)}
           </h1>
-          <p className="text-lg text-[#d4d4d8] mb-8 leading-relaxed">{t(post, 'excerpt', lang)}</p>
+          <p className="text-lg text-[#d4d4d8] mb-8 leading-relaxed break-words">{t(post, 'excerpt', lang)}</p>
           <div className="w-16 h-1 bg-amber-500 mb-8" />
           <div className="prose prose-invert prose-lg max-w-none">
             {t(post, 'content', lang).split('\n\n').map((paragraph, index) => (
-              <p key={index} className="text-[#d4d4d8] mb-6 leading-relaxed">{paragraph}</p>
+              <p key={index} className="text-[#d4d4d8] mb-6 leading-relaxed break-words">{paragraph}</p>
             ))}
           </div>
         </div>
@@ -79,16 +79,16 @@ export default async function PostPage({ params, searchParams }: { params: Promi
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPosts.map((related) => (
               <Link key={related.id} href={`/posts/${related.slug}${langParam}`}
-                className="group block bg-[#1c1c21] border border-[#2e2e35] rounded-lg overflow-hidden hover:border-amber-500/50 transition-all">
+                className="group block bg-[#1c1c21] border border-[#2e2e35] rounded-lg overflow-hidden hover:border-amber-500/50 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300 hover:-translate-y-1">
                 <div className="relative aspect-video overflow-hidden">
                   <Image src={related.image_url} alt={t(related, 'title', lang)} fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300" />
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-semibold text-[#fafafa] mb-2 group-hover:text-amber-400 transition-colors">
+                  <h3 className="text-lg font-semibold text-[#fafafa] mb-2 group-hover:text-amber-400 transition-colors line-clamp-2 break-words">
                     {t(related, 'title', lang)}
                   </h3>
-                  <p className="text-sm text-[#a1a1aa] line-clamp-2">{t(related, 'excerpt', lang)}</p>
+                  <p className="text-sm text-[#a1a1aa] line-clamp-2 break-words">{t(related, 'excerpt', lang)}</p>
                 </div>
               </Link>
             ))}

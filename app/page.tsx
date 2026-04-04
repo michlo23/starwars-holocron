@@ -41,7 +41,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                   {t(heroPost, 'excerpt', lang)}
                 </p>
                 <Link href={`/posts/${heroPost.slug}${langParam}`}
-                  className="inline-flex items-center px-6 py-3 text-sm font-medium text-[#09090b] bg-amber-500 hover:bg-amber-400 rounded-lg transition-colors">
+                  className="inline-flex items-center px-6 py-3 text-sm font-medium text-[#09090b] bg-amber-500 hover:bg-amber-400 rounded-lg transition-all btn-glow">
                   {i18n('home.readMore', lang)}
                   <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -71,24 +71,28 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {latestPosts.map((post) => (
               <Link key={post.id} href={`/posts/${post.slug}${langParam}`}
-                className="group block bg-[#1c1c21] border border-[#2e2e35] rounded-lg overflow-hidden hover:border-amber-500/50 transition-all">
+                className="group block bg-[#1c1c21] border border-[#2e2e35] rounded-lg overflow-hidden hover:border-amber-500/50 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300 hover:-translate-y-1">
                 <div className="relative aspect-video overflow-hidden">
                   <Image src={post.image_url} alt={t(post, 'title', lang)} fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300" />
                   <div className="absolute top-3 right-3">
-                    <span className="inline-block px-2 py-1 text-xs font-medium bg-[#111114]/80 backdrop-blur-sm text-amber-400 border border-amber-500/30 rounded-full">
+                    <span className="inline-block px-2.5 py-1 text-xs font-medium bg-[#111114]/90 backdrop-blur-sm text-amber-400 border border-amber-500/40 rounded-full badge-glow">
                       {tCategory(post.category, lang)}
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-semibold text-[#fafafa] mb-2 group-hover:text-amber-400 transition-colors">
+                  <h3 className="text-lg font-semibold text-[#fafafa] mb-2 group-hover:text-amber-400 transition-colors line-clamp-2">
                     {t(post, 'title', lang)}
                   </h3>
-                  <p className="text-sm text-[#a1a1aa] line-clamp-2">{t(post, 'excerpt', lang)}</p>
-                  <div className="mt-4 flex items-center justify-between text-xs text-[#71717a]">
-                    <span>{tEra(post.era, lang)}</span>
-                    <span>{tCanon(post.canon_status, lang)}</span>
+                  <p className="text-sm text-[#a1a1aa] line-clamp-2 break-words">{t(post, 'excerpt', lang)}</p>
+                  <div className="mt-4 flex items-center gap-2 flex-wrap text-xs">
+                    <span className="px-2 py-0.5 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full">
+                      {tEra(post.era, lang)}
+                    </span>
+                    <span className="px-2 py-0.5 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-full">
+                      {tCanon(post.canon_status, lang)}
+                    </span>
                   </div>
                 </div>
               </Link>

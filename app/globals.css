@@ -21,10 +21,37 @@
     font-weight: 600;
     color: #fafafa;
   }
+
+  /* Text overflow fixes */
+  p, div, span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Lightsaber glow effect for buttons */
+  .btn-glow {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3), 0 0 20px rgba(245, 158, 11, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5), 0 0 30px rgba(245, 158, 11, 0.2);
+    transform: translateY(-1px);
+  }
+
+  /* Badge glow effects */
+  .badge-glow {
+    box-shadow: 0 0 8px currentColor;
+    transition: all 0.2s ease;
+  }
+
+  .badge-glow:hover {
+    box-shadow: 0 0 12px currentColor;
   }
 }
