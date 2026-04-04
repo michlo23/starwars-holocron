@@ -4,6 +4,25 @@ import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import LangLink from './LangLink';
+
+function HamburgerIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
+      <rect x="5" y="8" width="18" height="2" rx="1" fill="#fbbf24" />
+      <rect x="5" y="13" width="18" height="2" rx="1" fill="#fbbf24" />
+      <rect x="5" y="18" width="18" height="2" rx="1" fill="#fbbf24" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
+      <line x1="8" y1="8" x2="20" y2="20" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" />
+      <line x1="20" y1="8" x2="8" y2="20" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
 import { tCategory, tEra, type Lang } from '@/lib/translations';
 
 const categories = [
@@ -40,17 +59,11 @@ export default function Sidebar() {
       {/* Mobile menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-2.5 left-14 z-[60] lg:hidden rounded-full overflow-hidden active:scale-95 transition-transform ring-2 ring-[#111114]"
+        className="fixed top-3 left-14 z-[60] lg:hidden bg-[#09090b]/90 backdrop-blur-sm border border-[#2e2e35] rounded-lg p-1.5 active:scale-95 transition-transform"
         aria-label="Menu"
-        style={{ touchAction: 'manipulation', minWidth: '48px', minHeight: '48px' }}
+        style={{ touchAction: 'manipulation', minWidth: '40px', minHeight: '40px' }}
       >
-        <Image
-          src={isOpen ? '/images/icons/menu-close.webp' : '/images/icons/menu-hamburger.webp'}
-          alt="Menu"
-          width={48}
-          height={48}
-          className="object-cover"
-        />
+        {isOpen ? <CloseIcon /> : <HamburgerIcon />}
       </button>
 
       {/* Overlay */}
