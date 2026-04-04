@@ -40,25 +40,17 @@ export default function Sidebar() {
       {/* Mobile menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-2.5 left-14 z-[60] lg:hidden rounded-xl overflow-hidden border border-amber-500/40 shadow-lg shadow-amber-500/10 hover:border-amber-400/60 active:scale-95 transition-all"
+        className="fixed top-2.5 left-14 z-[60] lg:hidden rounded-lg overflow-hidden active:scale-95 transition-transform"
         aria-label="Menu"
         style={{ touchAction: 'manipulation', minWidth: '44px', minHeight: '44px' }}
       >
-        {isOpen ? (
-          <div className="w-11 h-11 flex items-center justify-center bg-[#1c1c21]">
-            <svg className="w-6 h-6 text-amber-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </div>
-        ) : (
-          <Image
-            src="/images/icons/menu-hamburger.webp"
-            alt="Menu"
-            width={44}
-            height={44}
-            className="object-cover"
-          />
-        )}
+        <Image
+          src={isOpen ? '/images/icons/menu-close.webp' : '/images/icons/menu-hamburger.webp'}
+          alt="Menu"
+          width={44}
+          height={44}
+          className="object-cover rounded-lg"
+        />
       </button>
 
       {/* Overlay */}
@@ -97,7 +89,7 @@ export default function Sidebar() {
                     alt=""
                     width={28}
                     height={28}
-                    className="rounded-md border border-[#2e2e35] group-hover:border-amber-500/40 transition-colors"
+                    className="rounded-md"
                   />
                   <span>{tCategory(key, lang)}</span>
                 </LangLink>
@@ -126,7 +118,7 @@ export default function Sidebar() {
                     alt=""
                     width={28}
                     height={28}
-                    className="rounded-md border border-[#2e2e35] group-hover:border-amber-500/40 transition-colors"
+                    className="rounded-md"
                   />
                   <span>{tEra(key, lang)}</span>
                 </LangLink>
