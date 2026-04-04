@@ -2,11 +2,30 @@
 
 import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import LangLink from './LangLink';
 import { tCategory, tEra, type Lang } from '@/lib/translations';
 
-const categories = ['character', 'battle', 'ship', 'planet', 'lore', 'timeline', 'scene'];
-const eras = ['old_republic', 'prequel', 'clone_wars', 'imperial', 'rebellion', 'new_republic', 'first_order', 'legends'];
+const categories = [
+  { key: 'character', icon: '/images/icons/cat-character.webp' },
+  { key: 'battle', icon: '/images/icons/cat-battle.webp' },
+  { key: 'ship', icon: '/images/icons/cat-ship.webp' },
+  { key: 'planet', icon: '/images/icons/cat-planet.webp' },
+  { key: 'lore', icon: '/images/icons/cat-lore.webp' },
+  { key: 'timeline', icon: '/images/icons/cat-timeline.webp' },
+  { key: 'scene', icon: '/images/icons/cat-scene.webp' },
+];
+
+const eras = [
+  { key: 'old_republic', icon: '/images/icons/era-old-republic.webp' },
+  { key: 'prequel', icon: '/images/icons/era-prequel.webp' },
+  { key: 'clone_wars', icon: '/images/icons/era-clone-wars.webp' },
+  { key: 'imperial', icon: '/images/icons/era-imperial.webp' },
+  { key: 'rebellion', icon: '/images/icons/era-rebellion.webp' },
+  { key: 'new_republic', icon: '/images/icons/era-new-republic.webp' },
+  { key: 'first_order', icon: '/images/icons/era-first-order.webp' },
+  { key: 'legends', icon: '/images/icons/era-legends.webp' },
+];
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,18 +37,28 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile hamburger — fixed in navbar area, always on top */}
+      {/* Mobile menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-3 left-14 z-[60] lg:hidden p-3 rounded-xl bg-[#1c1c21] border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 active:bg-amber-500/30 transition-colors shadow-lg shadow-amber-500/10"
+        className="fixed top-2.5 left-14 z-[60] lg:hidden rounded-xl overflow-hidden border border-amber-500/40 shadow-lg shadow-amber-500/10 hover:border-amber-400/60 active:scale-95 transition-all"
         aria-label="Menu"
-        style={{ touchAction: 'manipulation', minWidth: '48px', minHeight: '48px' }}
+        style={{ touchAction: 'manipulation', minWidth: '44px', minHeight: '44px' }}
       >
-        <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" stroke="currentColor">
-          {isOpen
-            ? <path d="M6 18L18 6M6 6l12 12" />
-            : <path d="M4 6h16M4 12h16M4 18h16" />}
-        </svg>
+        {isOpen ? (
+          <div className="w-11 h-11 flex items-center justify-center bg-[#1c1c21]">
+            <svg className="w-6 h-6 text-amber-400" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+        ) : (
+          <Image
+            src="/images/icons/menu-hamburger.webp"
+            alt="Menu"
+            width={44}
+            height={44}
+            className="object-cover"
+          />
+        )}
       </button>
 
       {/* Overlay */}
@@ -46,28 +75,31 @@ export default function Sidebar() {
           fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-[#0d0d0f]/95 backdrop-blur-md
           border-r border-[#2e2e35] z-[45]
           transform transition-transform duration-300 ease-in-out overflow-y-auto
-          scrollbar-thin scrollbar-thumb-[#2e2e35] scrollbar-track-transparent
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
       >
-        <div className="p-5 space-y-6">
+        <div className="p-4 space-y-6">
           {/* Categories */}
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-widest text-amber-500/80 mb-3 flex items-center gap-2 px-2">
-              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
-              </svg>
+            <h3 className="text-[11px] font-bold uppercase tracking-widest text-amber-500/80 mb-3 px-2">
               {categoriesLabel}
             </h3>
             <nav className="space-y-0.5">
-              {categories.map((category) => (
+              {categories.map(({ key, icon }) => (
                 <LangLink
-                  key={category}
-                  href={`/category/${category}`}
-                  className="block px-3 py-2 text-sm text-[#d4d4d8] hover:text-amber-400 hover:bg-amber-500/10 rounded-md transition-all active:bg-amber-500/20"
+                  key={key}
+                  href={`/category/${key}`}
+                  className="flex items-center gap-3 px-2 py-2 text-sm text-[#d4d4d8] hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-all active:bg-amber-500/20 group"
                   onClick={() => setIsOpen(false)}
                 >
-                  {tCategory(category, lang)}
+                  <Image
+                    src={icon}
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="rounded-md border border-[#2e2e35] group-hover:border-amber-500/40 transition-colors"
+                  />
+                  <span>{tCategory(key, lang)}</span>
                 </LangLink>
               ))}
             </nav>
@@ -78,21 +110,25 @@ export default function Sidebar() {
 
           {/* Eras */}
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-widest text-amber-500/80 mb-3 flex items-center gap-2 px-2">
-              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-              </svg>
+            <h3 className="text-[11px] font-bold uppercase tracking-widest text-amber-500/80 mb-3 px-2">
               {erasLabel}
             </h3>
             <nav className="space-y-0.5">
-              {eras.map((era) => (
+              {eras.map(({ key, icon }) => (
                 <LangLink
-                  key={era}
-                  href={`/era/${era}`}
-                  className="block px-3 py-2 text-sm text-[#d4d4d8] hover:text-amber-400 hover:bg-amber-500/10 rounded-md transition-all active:bg-amber-500/20"
+                  key={key}
+                  href={`/era/${key}`}
+                  className="flex items-center gap-3 px-2 py-2 text-sm text-[#d4d4d8] hover:text-amber-400 hover:bg-amber-500/10 rounded-lg transition-all active:bg-amber-500/20 group"
                   onClick={() => setIsOpen(false)}
                 >
-                  {tEra(era, lang)}
+                  <Image
+                    src={icon}
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="rounded-md border border-[#2e2e35] group-hover:border-amber-500/40 transition-colors"
+                  />
+                  <span>{tEra(key, lang)}</span>
                 </LangLink>
               ))}
             </nav>
