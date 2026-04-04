@@ -15,7 +15,7 @@ function NavContent() {
     <div className="max-w-7xl mx-auto px-4 md:px-8">
       <div className="flex items-center justify-between h-16">
         {/* Left side: logo — extra left padding on mobile for hamburger */}
-        <LangLink href="/" className="flex items-center space-x-3 group pl-12 lg:pl-0">
+        <LangLink href="/" className="flex items-center space-x-3 group pl-16 lg:pl-0">
           <Image
             src="/images/branding/logo-header.webp"
             alt="Holocron Archives"

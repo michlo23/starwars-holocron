@@ -21,11 +21,11 @@ export default function Sidebar() {
       {/* Mobile hamburger — fixed in navbar area, always on top */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-[60] lg:hidden p-2 rounded-lg bg-[#1c1c21]/90 border border-[#2e2e35] text-amber-400 hover:bg-amber-500/20 active:bg-amber-500/30 transition-colors backdrop-blur-sm"
+        className="fixed top-3 left-14 z-[60] lg:hidden p-3 rounded-xl bg-[#1c1c21] border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 active:bg-amber-500/30 transition-colors shadow-lg shadow-amber-500/10"
         aria-label="Menu"
-        style={{ touchAction: 'manipulation' }}
+        style={{ touchAction: 'manipulation', minWidth: '48px', minHeight: '48px' }}
       >
-        <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" stroke="currentColor">
           {isOpen
             ? <path d="M6 18L18 6M6 6l12 12" />
             : <path d="M4 6h16M4 12h16M4 18h16" />}
