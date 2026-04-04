@@ -5,7 +5,7 @@ import { useCallback, useEffect } from 'react';
 
 function LangIcon({ code, active }: { code: string; active: boolean }) {
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
       <circle cx="16" cy="16" r="15" fill="#09090b" stroke={active ? '#f59e0b' : '#3f3f46'} strokeWidth="1.5" />
       {active && (
         <circle cx="16" cy="16" r="13" fill="none" stroke="#f59e0b" strokeWidth="0.5" opacity="0.3" />
@@ -87,7 +87,7 @@ export default function LanguageSwitcher() {
     <div className="flex items-center gap-1.5">
       <button
         onClick={() => switchLang('en')}
-        className="transition-transform active:scale-90 hover:scale-110"
+        className="bg-transparent border-0 p-0 leading-[0] transition-transform active:scale-90 hover:scale-110 cursor-pointer"
         aria-label="English"
         style={{ touchAction: 'manipulation' }}
       >
@@ -95,7 +95,7 @@ export default function LanguageSwitcher() {
       </button>
       <button
         onClick={() => switchLang('pl')}
-        className="transition-transform active:scale-90 hover:scale-110"
+        className="bg-transparent border-0 p-0 leading-[0] transition-transform active:scale-90 hover:scale-110 cursor-pointer"
         aria-label="Polski"
         style={{ touchAction: 'manipulation' }}
       >
