@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "ahsoka-tano",
+    "title_en": "Ahsoka Tano: Walking Between Light and Shadow",
+    "title_pl": "Ahsoka Tano: Kroczenie Między Światłem a Cieniem",
+    "excerpt_en": "Neither Jedi nor Sith—Ahsoka forged her own path through the Force after surviving Order 66 and the fall of the Republic.",
+    "excerpt_pl": "Ani Jedi, ani Sith—Ahsoka wytyczała własną ścieżkę przez Moc po przetrwaniu Rozkazu 66 i upadku Republiki.",
+    "content_en": "Ahsoka Tano began as Anakin Skywalker's Padawan during the Clone Wars and evolved into one of the most compelling figures in Star Wars. During the wars, she proved herself an exceptional commander. But her defining moment came when the Jedi Council wrongly accused her of terrorism. Though cleared, the experience shattered her faith. After Order 66, Ahsoka became the covert operative 'Fulcrum' for the Rebel Alliance. Her white lightsabers symbolize her unique position: wielding the Force without allegiance to Jedi or Sith.",
+    "content_pl": "Ahsoka Tano zaczynała jako Padawan Anakina w Wojnach Klonów i wyrosła na jedną z najważniejszych postaci Star Wars. Podczas wojen była wyjątkową dowódczynią. Ale definiujący moment nadszedł, gdy Rada Jedi oskarżyła ją o terroryzm. Choć oczyszczona, doświadczenie zniszczyło jej wiarę. Po Rozkazie 66 stała się agentką 'Fulcrum'. Białe miecze symbolizują jej pozycję: Moc bez Jedi czy Sithów.",
+    "category": "character",
+    "era": "clone_wars",
+    "canon_status": "canon",
+    "featured": true,
+    "image_url": "/images/posts/ahsoka-tano.webp"
+  }
+]
