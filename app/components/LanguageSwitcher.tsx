@@ -1,8 +1,58 @@
 'use client';
 
-import Image from 'next/image';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
+
+function LangIcon({ code, active }: { code: string; active: boolean }) {
+  return (
+    <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="15" fill="#09090b" stroke={active ? '#f59e0b' : '#3f3f46'} strokeWidth="1.5" />
+      {active && (
+        <circle cx="16" cy="16" r="13" fill="none" stroke="#f59e0b" strokeWidth="0.5" opacity="0.3" />
+      )}
+      <text
+        x="16"
+        y="17"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fill={active ? '#fbbf24' : '#71717a'}
+        fontSize="12"
+        fontWeight="bold"
+        fontFamily="system-ui, sans-serif"
+        letterSpacing="0.5"
+      >
+        {code}
+      </text>
+      {active && (
+        <>
+          <text
+            x="16"
+            y="17"
+            textAnchor="middle"
+            dominantBaseline="central"
+            fill="#fbbf24"
+            fontSize="12"
+            fontWeight="bold"
+            fontFamily="system-ui, sans-serif"
+            letterSpacing="0.5"
+            filter="url(#glow)"
+          >
+            {code}
+          </text>
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="1.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+        </>
+      )}
+    </svg>
+  );
+}
 
 export default function LanguageSwitcher() {
   const router = useRouter();
@@ -34,42 +84,22 @@ export default function LanguageSwitcher() {
   }, [router, pathname, searchParams]);
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-1.5">
       <button
         onClick={() => switchLang('en')}
-        className={`rounded-full overflow-hidden transition-all active:scale-90 ${
-          currentLang === 'en'
-            ? 'ring-2 ring-amber-500 scale-105'
-            : 'opacity-50 hover:opacity-80'
-        }`}
+        className="transition-transform active:scale-90 hover:scale-110"
         aria-label="English"
         style={{ touchAction: 'manipulation' }}
       >
-        <Image
-          src="/images/icons/lang-en.webp"
-          alt="EN"
-          width={32}
-          height={32}
-          className="rounded-full"
-        />
+        <LangIcon code="EN" active={currentLang === 'en'} />
       </button>
       <button
         onClick={() => switchLang('pl')}
-        className={`rounded-full overflow-hidden transition-all active:scale-90 ${
-          currentLang === 'pl'
-            ? 'ring-2 ring-amber-500 scale-105'
-            : 'opacity-50 hover:opacity-80'
-        }`}
+        className="transition-transform active:scale-90 hover:scale-110"
         aria-label="Polski"
         style={{ touchAction: 'manipulation' }}
       >
-        <Image
-          src="/images/icons/lang-pl.webp"
-          alt="PL"
-          width={32}
-          height={32}
-          className="rounded-full"
-        />
+        <LangIcon code="PL" active={currentLang === 'pl'} />
       </button>
     </div>
   );
