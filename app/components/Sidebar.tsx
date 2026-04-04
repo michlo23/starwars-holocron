@@ -1,15 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import LangLink from './LangLink';
-import { tCategory, tEra, i18n, type Lang } from '@/lib/translations';
+import { tCategory, tEra, type Lang } from '@/lib/translations';
+import { useSidebar } from './SidebarContext';
 
 const categories = ['character', 'battle', 'ship', 'planet', 'lore', 'timeline', 'scene'];
 const eras = ['old_republic', 'prequel', 'clone_wars', 'imperial', 'rebellion', 'new_republic', 'first_order', 'legends'];
 
-export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
+function SidebarContent() {
+  const { isOpen, close } = useSidebar();
   const searchParams = useSearchParams();
   const lang: Lang = searchParams.get('lang') === 'pl' ? 'pl' : 'en';
 
@@ -18,34 +19,11 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile hamburger button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-20 left-4 z-50 lg:hidden bg-[#1c1c21] border border-[#2e2e35] rounded-lg p-2 hover:bg-[#27272a] transition-colors"
-        aria-label="Toggle sidebar"
-      >
-        <svg
-          className="w-6 h-6 text-amber-500"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          {isOpen ? (
-            <path d="M6 18L18 6M6 6l12 12" />
-          ) : (
-            <path d="M4 6h16M4 12h16M4 18h16" />
-          )}
-        </svg>
-      </button>
-
       {/* Overlay for mobile */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+          onClick={close}
         />
       )}
 
@@ -58,7 +36,7 @@ export default function Sidebar() {
         `}
       >
         <div className="p-6 space-y-8">
-          {/* Categories Section */}
+          {/* Categories */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-500 mb-4 flex items-center gap-2">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -72,7 +50,7 @@ export default function Sidebar() {
                   key={category}
                   href={`/category/${category}`}
                   className="block px-3 py-2 text-sm text-[#d4d4d8] hover:text-amber-400 hover:bg-[#1c1c21] rounded-md transition-all hover:translate-x-1 hover:shadow-[0_0_10px_rgba(245,158,11,0.2)]"
-                  onClick={() => setIsOpen(false)}
+                  onClick={close}
                 >
                   {tCategory(category, lang)}
                 </LangLink>
@@ -80,7 +58,7 @@ export default function Sidebar() {
             </nav>
           </div>
 
-          {/* Eras Section */}
+          {/* Eras */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider text-amber-500 mb-4 flex items-center gap-2">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -94,7 +72,7 @@ export default function Sidebar() {
                   key={era}
                   href={`/era/${era}`}
                   className="block px-3 py-2 text-sm text-[#d4d4d8] hover:text-amber-400 hover:bg-[#1c1c21] rounded-md transition-all hover:translate-x-1 hover:shadow-[0_0_10px_rgba(245,158,11,0.2)]"
-                  onClick={() => setIsOpen(false)}
+                  onClick={close}
                 >
                   {tEra(era, lang)}
                 </LangLink>
@@ -104,5 +82,13 @@ export default function Sidebar() {
         </div>
       </aside>
     </>
+  );
+}
+
+export default function Sidebar() {
+  return (
+    <Suspense>
+      <SidebarContent />
+    </Suspense>
   );
 }

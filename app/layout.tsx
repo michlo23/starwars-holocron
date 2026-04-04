@@ -4,7 +4,7 @@ import './globals.css';
 import NavBar from './components/NavBar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
-import { Suspense } from 'react';
+import { SidebarProvider } from './components/SidebarContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -53,14 +53,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="bg-[#111114] text-[#d4d4d8] antialiased">
-        <NavBar />
-        <Suspense>
+        <SidebarProvider>
+          <NavBar />
           <Sidebar />
-        </Suspense>
-        <div className="lg:pl-64">
-          {children}
-          <Footer />
-        </div>
+          <div className="lg:pl-64">
+            {children}
+            <Footer />
+          </div>
+        </SidebarProvider>
       </body>
     </html>
   );
