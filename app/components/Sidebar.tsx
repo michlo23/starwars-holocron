@@ -40,7 +40,7 @@ export default function Sidebar() {
       {/* Mobile menu button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-2.5 left-14 z-[60] lg:hidden bg-transparent border-0 p-0 rounded-full overflow-hidden active:scale-95 transition-transform ring-2 ring-[#111114]"
+        className="fixed top-[3.125rem] left-14 z-[60] lg:hidden bg-transparent border-0 p-0 rounded-full overflow-hidden active:scale-95 transition-transform ring-2 ring-[#111114]"
         aria-label="Menu"
         style={{ touchAction: 'manipulation', minWidth: '48px', minHeight: '48px' }}
       >
@@ -64,7 +64,7 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={`
-          fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-[#0d0d0f]/95 backdrop-blur-md
+          fixed top-[6.5rem] left-0 h-[calc(100vh-6.5rem)] w-64 bg-[#0d0d0f]/95 backdrop-blur-md
           border-r border-[#2e2e35] z-[45]
           transform transition-transform duration-300 ease-in-out overflow-y-auto
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}

@@ -45,7 +45,7 @@ function NavContent() {
 
 export default function NavBar() {
   return (
-    <nav className="sticky top-0 z-50 bg-[#09090b]/95 backdrop-blur-sm border-b border-[#2e2e35]">
+    <nav className="sticky top-10 z-50 bg-[#09090b]/95 backdrop-blur-sm border-b border-[#2e2e35]">
       <Suspense>
         <NavContent />
       </Suspense>
